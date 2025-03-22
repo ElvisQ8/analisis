@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 from io import BytesIO
 
 # Tabla de rangos por litología
@@ -60,17 +60,37 @@ if archivo:
 
     st.dataframe(filtrado.style.apply(highlight, axis=1))
 
-    # Gráfico
-    fig, ax = plt.subplots(figsize=(10, 5))
-    for lit, (min_val, max_val) in rangos_lito.items():
-        ax.axhline(min_val, color='gray', linestyle='--', linewidth=0.5)
-        ax.axhline(max_val, color='gray', linestyle='--', linewidth=0.5)
+    # Gráfico con Plotly
+    fig = go.Figure()
 
-    colores = filtrado['Estado'].map(lambda x: 'red' if x == 'Fuera de Rango' else 'blue')
-    ax.scatter(filtrado.index, filtrado['DENSIDAD'], c=colores)
-    ax.set_ylabel('Densidad')
-    ax.set_title('Validación de Densidades')
-    st.pyplot(fig)
+    # Agregar líneas de rango por litología
+    for lit, (min_val, max_val) in rangos_lito.items():
+        fig.add_shape(type="line", x0=0, x1=len(filtrado), y0=min_val, y1=min_val,
+                      line=dict(color="gray", width=1, dash="dash"))
+        fig.add_shape(type="line", x0=0, x1=len(filtrado), y0=max_val, y1=max_val,
+                      line=dict(color="gray", width=1, dash="dash"))
+
+    # Agregar puntos de densidad
+    fig.add_trace(go.Scatter(
+        x=filtrado.index,
+        y=filtrado['DENSIDAD'],
+        mode='markers',
+        marker=dict(
+            color=np.where(filtrado['Estado'] == 'Fuera de Rango', 'red', 'blue'),
+            size=8
+        ),
+        name='Densidad'
+    ))
+
+    fig.update_layout(
+        title='Validación de Densidades',
+        xaxis_title='Índice de Muestra',
+        yaxis_title='Densidad',
+        legend_title='Leyenda',
+        showlegend=True
+    )
+
+    st.plotly_chart(fig)
 
     # Exportar a Excel
     output = BytesIO()
