@@ -42,6 +42,8 @@ if archivo:
     def validar(row):
         densidad = row['DENSIDAD']
         litologia = row['COMENTARIO']
+        if pd.isna(densidad):
+            return 'Sin Densidad'
         if pd.isna(litologia):
             return 'Fuera de Rango' if not (2.749 <= densidad <= 2.779) else 'Correcto'
         if litologia in rangos_lito:
@@ -74,7 +76,8 @@ if archivo:
     output = BytesIO()
     with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
         filtrado.to_excel(writer, index=False, sheet_name='Resultado')
-        writer.save()
+    output.seek(0)
+
     st.download_button(
         label="Descargar resultado en Excel",
         data=output.getvalue(),
