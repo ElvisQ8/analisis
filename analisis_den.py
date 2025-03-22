@@ -24,6 +24,7 @@ if archivo:
 
     # Reemplazo de NaN en 'TIPO DE CONTROL QA/QC'
     df['TIPO DE CONTROL QA/QC'] = df['TIPO DE CONTROL QA/QC'].fillna('ORD')
+    df['MUESTRA'] = df['MUESTRA'].fillna('ESTANDAR')
 
     # Filtros
     metodo = st.multiselect("Filtrar por MÉTODO DE ANÁLISIS", options=sorted(df['MÉTODO DE ANÁLISIS'].dropna().unique()))
@@ -56,10 +57,12 @@ if archivo:
         if pd.isna(litologia):
             if 2.749 <= densidad <= 2.779:
                 estado = 'Correcto'
+                comentario_valid = 'Estándar dentro del rango'
             else:
                 estado = 'Fuera de Rango'
+                comentario_valid = 'Estándar fuera de rango'
             estado_list.append(estado)
-            comentario_list.append('')
+            comentario_list.append(comentario_valid)
         elif litologia in rangos_lito:
             min_val, max_val = rangos_lito[litologia]
             if min_val <= densidad <= max_val:
@@ -96,31 +99,33 @@ if archivo:
 
     st.dataframe(filtrado.style.apply(highlight, axis=1))
 
-    # Gráfico con Plotly
+    # Gráfico con Plotly usando la columna "MUESTRA" como eje X
     fig = go.Figure()
 
-    # Agregar líneas de rango por litología
+    # Líneas de rango por litología
     for lit, (min_val, max_val) in rangos_lito.items():
         fig.add_shape(type="line", x0=0, x1=len(filtrado), y0=min_val, y1=min_val,
                       line=dict(color="gray", width=1, dash="dash"))
         fig.add_shape(type="line", x0=0, x1=len(filtrado), y0=max_val, y1=max_val,
                       line=dict(color="gray", width=1, dash="dash"))
 
-    # Agregar puntos de densidad
+    # Scatter con 'hover' mostrando COMENTARIO
     fig.add_trace(go.Scatter(
-        x=filtrado.index,
+        x=filtrado['MUESTRA'],
         y=filtrado['DENSIDAD'],
         mode='markers',
         marker=dict(
             color=np.where(filtrado['Estado'].isin(['Fuera de Rango', 'Error Duplicado']), 'red', 'blue'),
             size=8
         ),
+        text=filtrado['COMENTARIO'],
+        hovertemplate='<b>Muestra:</b> %{x}<br><b>Densidad:</b> %{y}<br><b>Litología:</b> %{text}<extra></extra>',
         name='Densidad'
     ))
 
     fig.update_layout(
         title='Validación de Densidades',
-        xaxis_title='Índice de Muestra',
+        xaxis_title='MUESTRA',
         yaxis_title='Densidad',
         legend_title='Leyenda',
         showlegend=True
