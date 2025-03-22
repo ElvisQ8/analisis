@@ -38,24 +38,60 @@ if archivo:
     if comentario:
         filtrado = filtrado[filtrado['COMENTARIO'].isin(comentario)]
 
-    # Validación de densidades
-    def validar(row):
+    # Validación de densidades y regla de DEND
+    estado_list = []
+    comentario_list = []
+
+    for idx, row in filtrado.iterrows():
         densidad = row['DENSIDAD']
         litologia = row['COMENTARIO']
-        if pd.isna(densidad):
-            return 'Sin Densidad'
-        if pd.isna(litologia):
-            return 'Fuera de Rango' if not (2.749 <= densidad <= 2.779) else 'Correcto'
-        if litologia in rangos_lito:
-            min_val, max_val = rangos_lito[litologia]
-            return 'Fuera de Rango' if not (min_val <= densidad <= max_val) else 'Correcto'
-        return 'Litología desconocida'
+        tipo_control_val = row['TIPO DE CONTROL QA/QC']
 
-    filtrado['Estado'] = filtrado.apply(validar, axis=1)
+        if pd.isna(densidad):
+            estado_list.append('Sin Densidad')
+            comentario_list.append('')
+            continue
+
+        # Validación estándar y por litología
+        if pd.isna(litologia):
+            if 2.749 <= densidad <= 2.779:
+                estado = 'Correcto'
+            else:
+                estado = 'Fuera de Rango'
+            estado_list.append(estado)
+            comentario_list.append('')
+        elif litologia in rangos_lito:
+            min_val, max_val = rangos_lito[litologia]
+            if min_val <= densidad <= max_val:
+                estado = 'Correcto'
+            else:
+                estado = 'Fuera de Rango'
+            estado_list.append(estado)
+            comentario_list.append('')
+        else:
+            estado_list.append('Litología desconocida')
+            comentario_list.append('')
+
+    filtrado['Estado'] = estado_list
+    filtrado['Comentario Validación'] = comentario_list
+
+    # Validación DEND duplicados
+    for idx in range(1, len(filtrado)):
+        row = filtrado.iloc[idx]
+        if row['TIPO DE CONTROL QA/QC'] == 'DEND':
+            densidad_actual = row['DENSIDAD']
+            densidad_anterior = filtrado.iloc[idx - 1]['DENSIDAD']
+            if pd.notna(densidad_actual) and pd.notna(densidad_anterior):
+                variacion = abs(densidad_actual - densidad_anterior) / densidad_anterior
+                if variacion > 0.10:
+                    filtrado.at[idx, 'Estado'] = 'Error Duplicado'
+                    filtrado.at[idx, 'Comentario Validación'] = 'Duplicado fuera del 10%'
+                else:
+                    filtrado.at[idx, 'Comentario Validación'] = 'Duplicado dentro del 10%'
 
     # Mostrar tabla con color
     def highlight(row):
-        color = 'background-color: red' if row['Estado'] == 'Fuera de Rango' else ''
+        color = 'background-color: red' if row['Estado'] in ['Fuera de Rango', 'Error Duplicado'] else ''
         return [color] * len(row)
 
     st.dataframe(filtrado.style.apply(highlight, axis=1))
@@ -76,7 +112,7 @@ if archivo:
         y=filtrado['DENSIDAD'],
         mode='markers',
         marker=dict(
-            color=np.where(filtrado['Estado'] == 'Fuera de Rango', 'red', 'blue'),
+            color=np.where(filtrado['Estado'].isin(['Fuera de Rango', 'Error Duplicado']), 'red', 'blue'),
             size=8
         ),
         name='Densidad'
