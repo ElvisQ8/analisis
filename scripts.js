@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const basePath = "/analisis/";
-    // Datos de los procesos
+    // Establecer correctamente la ruta base según el entorno
+    const basePath = window.location.hostname.includes("github.io") 
+    ? "/analisis/" // Si estamos en GitHub Pages, usamos la ruta base del repositorio
+    : "/"; // Si estamos localmente, no necesitamos la ruta base
+
     const procesos = [
         {
             nombre: "Recepción de muestras y verificación",
@@ -174,7 +177,6 @@ document.addEventListener("DOMContentLoaded", function () {
     procesosContainer.appendChild(card);
   });
 
-  // Mostrar los detalles del proceso al hacer clic
   function mostrarDetalle(index) {
     const proceso = procesos[index];
     currentProceso = proceso;
@@ -202,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("proceso-detail").classList.remove("hidden");
   }
 
-  // Función para abrir la imagen en el panel lateral
+  // Mostrar la imagen en el panel lateral
   showImageButton.addEventListener("click", () => {
     if (!currentProceso) return; // Verificar que haya un proceso seleccionado
     const imagePanel = document.getElementById("image-panel");
@@ -211,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
     imagePanel.classList.add("show"); // Mostrar el panel lateral de la imagen
   });
 
-  // Función para abrir el PDF en el panel lateral
+  // Mostrar el PDF en el panel lateral
   showPdfButton.addEventListener("click", () => {
     if (!currentProceso) return; // Verificar que haya un proceso seleccionado
     const pdfPanel = document.getElementById("pdf-panel");
@@ -230,7 +232,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("pdf-panel").classList.remove("show"); // Ocultar el panel del PDF
   });
 });
-
 
   // Cerrar el panel lateral de PDF
   document.getElementById("close-pdf-panel").addEventListener("click", () => {
