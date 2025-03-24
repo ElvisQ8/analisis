@@ -197,7 +197,6 @@ document.addEventListener("DOMContentLoaded", function () {
       responsablesContainer.appendChild(li);
     });
 
-    // Mostrar botones
     document.getElementById("proceso-detail").classList.remove("hidden");
   }
 
