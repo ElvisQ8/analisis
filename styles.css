@@ -34,6 +34,44 @@
     transform: scale(1.05);
 }
 
+/* Estilo para los Subprocesos */
+.subprocesos-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+}
+
+.subproceso {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo para los Botones de Navegación */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.navigation-buttons button {
+    background-color: #2ecc71;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navigation-buttons button:hover {
+    background-color: #27ae60;
+}
+
 /* Modal */
 .modal {
     display: none;
