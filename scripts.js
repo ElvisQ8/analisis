@@ -20,7 +20,7 @@ const procesos = {
             "LECTURAS CON XRF"
         ]
     },
-    // Agregar más procesos...
+    // Agregar más procesos según sea necesario
 };
 
 // Función para mostrar los subprocesos de un proceso
@@ -63,12 +63,12 @@ function previousProcess(currentProcessId) {
     }
 }
 
-// Función para abrir el modal
+// Función para abrir el modal del PDF
 function openModal() {
     document.getElementById('pdfModal').style.display = 'flex';
 }
 
-// Función para cerrar el modal
+// Función para cerrar el modal del PDF
 function closeModal() {
     document.getElementById('pdfModal').style.display = 'none';
 }
