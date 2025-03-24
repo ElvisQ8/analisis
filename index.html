@@ -17,17 +17,26 @@
 
     <section id="proceso-detail" class="hidden">
       <h2 id="proceso-title"></h2>
-      <div id="subprocesos"></div>
-      <h3>Responsables:</h3>
-      <ul id="responsables"></ul>
+      <div class="process-detail-container">
+        <!-- Subprocesos y Responsables en la izquierda -->
+        <div id="left-column">
+          <div id="subprocesos"></div>
+          <h3>Responsables:</h3>
+          <ul id="responsables"></ul>
+        </div>
+        
+        <!-- Imagen en la derecha -->
+        <div id="right-column">
+          <!-- Imagen cargada -->
+          <div id="image-container" class="hidden">
+            <h3>Imagen del proceso</h3>
+            <img id="modal-image" class="panel-content" src="" alt="Imagen del proceso" />
+          </div>
+        </div>
+      </div>
+      
       <button id="show-image">Ver Imagen</button>
       <button id="show-pdf">Ver PDF</button>
-
-      <!-- Sección para mostrar la imagen -->
-      <div id="image-container" class="hidden">
-        <h3>Imagen del proceso</h3>
-        <img id="modal-image" class="panel-content" src="" alt="Imagen del proceso" />
-      </div>
 
       <!-- Sección para mostrar el PDF -->
       <div id="pdf-container" class="hidden">
