@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flujo de Procesos de Logueo</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Presentación de Procesos</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="procesos">
-        <!-- Cards de procesos -->
-        <div class="process-card" id="proceso1" onclick="mostrarSubprocesos('proceso1')">
-            <h3>Proceso 1: Recepción de muestras</h3>
+    <!-- Fondo de pantalla -->
+    <div class="background"></div>
+
+    <!-- Contenedor de los Cards -->
+    <div class="cards-container">
+        <div class="card" id="proceso1" onclick="showProcess('proceso1')">
+            <h3>Recepción de muestras y verificación</h3>
         </div>
-        <div class="process-card" id="proceso2" onclick="mostrarSubprocesos('proceso2')">
-            <h3>Proceso 2: Logueo Geológico</h3>
+        <div class="card" id="proceso2" onclick="showProcess('proceso2')">
+            <h3>Logueo Geológico</h3>
         </div>
-        <div class="process-card" id="proceso3" onclick="mostrarSubprocesos('proceso3')">
-            <h3>Proceso 3: Registro de RQD</h3>
-        </div>
-        <!-- Puedes agregar más procesos según sea necesario -->
+        <!-- Aquí se agregarán más cards -->
     </div>
 
-    <div id="subprocesos">
-        <!-- Aquí se mostrarán los subprocesos -->
+    <!-- Modal para el PDF -->
+    <div class="modal" id="pdfModal">
+        <div class="modal-content">
+            <button onclick="closeModal()">Cerrar</button>
+            <iframe src="archivos/seguridad.pdf" width="100%" height="500px"></iframe>
+        </div>
     </div>
 
-    <div id="imagen">
-        <!-- Aquí se mostrará la imagen referencial al final -->
-    </div>
-
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
