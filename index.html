@@ -11,14 +11,14 @@
     <div class="background"></div>
 
     <!-- Contenedor de los Cards -->
-    <div class="cards-container">
+    <div class="carousel-container">
         <div class="card" id="proceso1" onclick="showProcess('proceso1')">
             <h3>Recepción de muestras y verificación</h3>
         </div>
         <div class="card" id="proceso2" onclick="showProcess('proceso2')">
             <h3>Logueo Geológico</h3>
         </div>
-        <!-- Puedes agregar más cards aquí -->
+        <!-- Se pueden agregar más cards -->
     </div>
 
     <!-- Contenedor de los Subprocesos (ocultos al principio) -->
@@ -28,8 +28,8 @@
 
     <!-- Botones de navegación -->
     <div class="navigation-buttons">
-        <button onclick="previousProcess('proceso1')">Anterior</button>
-        <button onclick="nextProcess('proceso1')">Siguiente</button>
+        <button onclick="previousProcess()">Anterior</button>
+        <button onclick="nextProcess()">Siguiente</button>
     </div>
 
     <!-- Modal para el PDF -->
