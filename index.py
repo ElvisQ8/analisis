@@ -45,15 +45,19 @@ def show_subprocess_flow(process):
 
     # Mostrar el flujo de subprocesos uno por uno con un intervalo de 3 segundos
     current_step = st.session_state.get('step', 0)
-    
+
     if current_step < len(sub_processes):
         st.write(f"Subproceso {current_step + 1}: {sub_processes[current_step]}")
         st.markdown("<h3 style='text-align: center;'>⟶</h3>", unsafe_allow_html=True)  # Flecha entre subprocesos
-        if current_step < len(sub_processes) - 1:
-            # Pausa de 3 segundos entre cada subproceso
-            time.sleep(3)
+        # Pausa de 3 segundos entre cada subproceso
+        if st.session_state.get('waiting', False):
+            time.sleep(3)  # Espera 3 segundos antes de continuar
+            st.session_state['waiting'] = False
             st.session_state['step'] = current_step + 1  # Avanza al siguiente subproceso
-            st.experimental_rerun()  # Rerun para mostrar el siguiente subproceso después del tiempo
+        else:
+            st.session_state['waiting'] = True  # Marcar que debe esperar antes de avanzar
+            st.button('Siguiente')  # Botón para avanzar, aunque no hace nada aquí
+
     else:
         st.write("Todos los subprocesos completados.")
         process_number = processes.tolist().index(process) + 1  # Obtener el número del proceso
