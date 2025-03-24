@@ -12,7 +12,7 @@ def show_reference_image(process_number):
     st.image(image_path, caption=f"Imagen del Proceso {process_number}", use_column_width=True)
 
 # Cargar el archivo Excel con los subprocesos (PROCESOS_LOGUEO2.xlsx debe estar en el mismo directorio)
-file_path = '/mnt/data/PROCESOS_LOGUEO2.xlsx'
+file_path = 'PROCESOS_LOGUEO2.xlsx'
 df = pd.read_excel(file_path, sheet_name='Hoja2')
 
 # Extraer los procesos y subprocesos del archivo
