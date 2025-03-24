@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ]; // **Coma al final del arreglo**
 
-    // Mostrar los cards de los procesos
+     // Mostrar los cards de los procesos en un carrusel
     const procesosContainer = document.getElementById('procesos');
     procesos.forEach((proceso, index) => {
         const card = document.createElement('div');
@@ -199,14 +199,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Mostrar botones
         showImageButton.addEventListener('click', () => {
-            window.open(proceso.imagen, '_blank');
+            openImageModal(proceso.imagen);
         });
 
         showPdfButton.addEventListener('click', () => {
-            window.open('archivos/seguridad.pdf', '_blank');
+            openPdfModal('archivos/seguridad.pdf');
         });
 
         // Mostrar el detalle del proceso
         document.getElementById('proceso-detail').classList.remove('hidden');
     }
+
+    // Función para abrir el modal de imagen
+    function openImageModal(imageSrc) {
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        modalImage.src = imageSrc;
+        modal.classList.remove('hidden');
+    }
+
+    // Función para abrir el modal de PDF
+    function openPdfModal(pdfSrc) {
+        const modal = document.getElementById('pdf-modal');
+        const modalPdf = document.getElementById('modal-pdf');
+        modalPdf.src = pdfSrc;
+        modal.classList.remove('hidden');
+    }
+
+    // Cerrar el modal de imagen
+    document.getElementById('close-image').addEventListener('click', () => {
+        document.getElementById('image-modal').classList.add('hidden');
+    });
+
+    // Cerrar el modal de PDF
+    document.getElementById('close-pdf').addEventListener('click', () => {
+        document.getElementById('pdf-modal').classList.add('hidden');
+    });
 });
