@@ -182,13 +182,17 @@ document.addEventListener("DOMContentLoaded", function () {
     subprocesosContainer.innerHTML = "";
     responsablesContainer.innerHTML = "";
 
+    // Limpiar los contenedores de imagen y PDF antes de cargar nuevos contenidos
+    document.getElementById("image-container").classList.add("hidden");
+    document.getElementById("pdf-container").classList.add("hidden");
+
     // Mostrar subprocesos con intervalos de 2 segundos
     proceso.subprocesos.forEach((sub, i) => {
       setTimeout(() => {
         const p = document.createElement("p");
         p.textContent = sub;
         subprocesosContainer.appendChild(p);
-      }, i * 1000);
+      }, i * 2000);
     });
 
     // Mostrar responsables
@@ -201,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("proceso-detail").classList.remove("hidden");
   }
 
-  // Mostrar la imagen en el contenedor
+  // Mostrar la imagen en el contenedor de la derecha
   showImageButton.addEventListener("click", () => {
     if (!currentProceso) return; // Verificar que haya un proceso seleccionado
     const imageContainer = document.getElementById("image-container");
@@ -210,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
     imageContainer.classList.remove("hidden"); // Mostrar la sección de la imagen
   });
 
-  // Mostrar el PDF en el contenedor
+  // Mostrar el PDF en el contenedor de la sección
   showPdfButton.addEventListener("click", () => {
     if (!currentProceso) return; // Verificar que haya un proceso seleccionado
     const pdfContainer = document.getElementById("pdf-container");
