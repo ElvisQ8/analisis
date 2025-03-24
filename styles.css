@@ -1,6 +1,6 @@
 /* Fondo de pantalla */
 .background {
-    background-image: url('imagenes/background-image.jpg'); /* Cambiar por la ruta de la imagen */
+    background-image: url('background-image.jpg'); /* Cambiar por la ruta de la imagen */
     background-size: cover;
     position: absolute;
     top: 0;
@@ -13,11 +13,12 @@
 /* Contenedor de Cards (Carrusel) */
 .carousel-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 50px;
     overflow: hidden;
     width: 80%;
     margin: 0 auto;
+    position: relative;
 }
 
 .card {
@@ -31,10 +32,12 @@
     height: 150px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
+    opacity: 0.6;
+    margin: 0 10px;
 }
 
 .card:hover {
-    transform: scale(1.05);
+    opacity: 1;
 }
 
 /* Subprocesos */
@@ -52,6 +55,14 @@
     color: white;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: none;
+}
+
+.subproceso-img {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 5px;
 }
 
 /* Flechas de subprocesos */
@@ -62,27 +73,6 @@
     height: 20px;
     background-color: #3498db;
     clip-path: polygon(0 0, 100% 50%, 0 100%);
-}
-
-/* Botones de navegación */
-.navigation-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.navigation-buttons button {
-    background-color: #2ecc71;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.navigation-buttons button:hover {
-    background-color: #27ae60;
 }
 
 /* Modal */
