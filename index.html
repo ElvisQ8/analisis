@@ -18,7 +18,18 @@
         <div class="card" id="proceso2" onclick="showProcess('proceso2')">
             <h3>Logueo Geológico</h3>
         </div>
-        <!-- Aquí se agregarán más cards -->
+        <!-- Puedes agregar más cards aquí -->
+    </div>
+
+    <!-- Contenedor de los Subprocesos (ocultos al principio) -->
+    <div id="subprocesos-container" class="subprocesos-container" style="display: none;">
+        <!-- Subprocesos específicos se inyectarán aquí dinámicamente -->
+    </div>
+
+    <!-- Botones de navegación -->
+    <div class="navigation-buttons">
+        <button onclick="previousProcess('proceso1')">Anterior</button>
+        <button onclick="nextProcess('proceso1')">Siguiente</button>
     </div>
 
     <!-- Modal para el PDF -->
