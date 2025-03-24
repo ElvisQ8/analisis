@@ -155,9 +155,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ]; // **Coma al final del arreglo**
 
-  const repoName = window.location.pathname.split("/")[1]; // "analisis"
-  const basePath = `/${repoName}/`;
-
   const procesosContainer = document.getElementById("procesos");
   const procesoTitle = document.getElementById("proceso-title");
   const subprocesosContainer = document.getElementById("subprocesos");
@@ -167,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let currentProceso = null;
 
+  // Renderizar los procesos
   procesos.forEach((proceso, index) => {
     const card = document.createElement("div");
     card.className = "card";
@@ -176,13 +174,14 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function mostrarDetalle(index) {
-    currentProceso = procesos[index];
-    procesoTitle.textContent = currentProceso.nombre;
+    const proceso = procesos[index];
+    currentProceso = proceso;
+    procesoTitle.textContent = proceso.nombre;
 
     subprocesosContainer.innerHTML = "";
     responsablesContainer.innerHTML = "";
 
-    currentProceso.subprocesos.forEach((sub, i) => {
+    proceso.subprocesos.forEach((sub, i) => {
       setTimeout(() => {
         const p = document.createElement("p");
         p.textContent = sub;
@@ -190,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }, i * 2000);
     });
 
-    currentProceso.responsables.forEach((res) => {
+    proceso.responsables.forEach((res) => {
       const li = document.createElement("li");
       li.textContent = res;
       responsablesContainer.appendChild(li);
