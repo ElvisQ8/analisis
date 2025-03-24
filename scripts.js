@@ -155,7 +155,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ]; // **Coma al final del arreglo**
 
-    const procesosContainer = document.getElementById("procesos");
+  const repoName = window.location.pathname.split("/")[1]; // "analisis"
+  const basePath = `/${repoName}/`;
+
+  const procesosContainer = document.getElementById("procesos");
   const procesoTitle = document.getElementById("proceso-title");
   const subprocesosContainer = document.getElementById("subprocesos");
   const responsablesContainer = document.getElementById("responsables");
@@ -164,7 +167,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let currentProceso = null;
 
-  // Crear las cards
   procesos.forEach((proceso, index) => {
     const card = document.createElement("div");
     card.className = "card";
@@ -174,14 +176,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function mostrarDetalle(index) {
-    const proceso = procesos[index];
-    currentProceso = proceso;
-    procesoTitle.textContent = proceso.nombre;
+    currentProceso = procesos[index];
+    procesoTitle.textContent = currentProceso.nombre;
 
     subprocesosContainer.innerHTML = "";
     responsablesContainer.innerHTML = "";
 
-    proceso.subprocesos.forEach((sub, i) => {
+    currentProceso.subprocesos.forEach((sub, i) => {
       setTimeout(() => {
         const p = document.createElement("p");
         p.textContent = sub;
@@ -189,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }, i * 2000);
     });
 
-    proceso.responsables.forEach((res) => {
+    currentProceso.responsables.forEach((res) => {
       const li = document.createElement("li");
       li.textContent = res;
       responsablesContainer.appendChild(li);
@@ -202,14 +203,14 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!currentProceso) return;
     const imagePanel = document.getElementById("image-panel");
     const modalImage = document.getElementById("modal-image");
-    modalImage.src = currentProceso.imagen;
+    modalImage.src = basePath + currentProceso.imagen;
     imagePanel.classList.add("show");
   });
 
   showPdfButton.addEventListener("click", () => {
     const pdfPanel = document.getElementById("pdf-panel");
     const modalPdf = document.getElementById("modal-pdf");
-    modalPdf.src = "archivos/seguridad.pdf";
+    modalPdf.src = basePath + "archivos/seguridad.pdf";
     pdfPanel.classList.add("show");
   });
 
