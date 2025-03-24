@@ -7,7 +7,7 @@ image_folder = "IMAGENES"
 
 # Función para cargar la imagen referencial al finalizar el flujo de subprocesos
 def show_reference_image(process_number):
-    image_path = os.path.join(image_folder, f"imagen{process_number}.JPG")  # Imagen correspondiente al proceso
+    image_path = os.path.join(image_folder, f"imagen{process_number}.jpg")  # Imagen correspondiente al proceso
     st.image(image_path, caption=f"Imagen del Proceso {process_number}", use_column_width=True)
 
 # Cargar el archivo Excel con los subprocesos (PROCESOS_LOGUEO2.xlsx debe estar en el mismo directorio)
