@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
         modalImage.src = imageSrc;
-        modal.classList.remove('hidden');
+        modal.classList.remove('hidden'); // Mostrar el modal de imagen
     }
 
     // Función para abrir el modal de PDF
@@ -223,30 +223,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const modal = document.getElementById('pdf-modal');
         const modalPdf = document.getElementById('modal-pdf');
         modalPdf.src = pdfSrc;
-        modal.classList.remove('hidden');
+        modal.classList.remove('hidden'); // Mostrar el modal de PDF
     }
 
     // Cerrar el modal de imagen
     document.getElementById('close-image').addEventListener('click', () => {
-        document.getElementById('image-modal').classList.add('hidden');
+        document.getElementById('image-modal').classList.add('hidden'); // Ocultar el modal de imagen
     });
 
     // Cerrar el modal de PDF
     document.getElementById('close-pdf').addEventListener('click', () => {
-        document.getElementById('pdf-modal').classList.add('hidden');
-    });
-
-    // Cerrar el modal cuando se haga clic fuera del contenido del modal
-    window.addEventListener('click', function(event) {
-        const imageModal = document.getElementById('image-modal');
-        const pdfModal = document.getElementById('pdf-modal');
-        
-        // Cerrar modales si se hace clic fuera del modal
-        if (event.target === imageModal) {
-            imageModal.classList.add('hidden');
-        }
-        if (event.target === pdfModal) {
-            pdfModal.classList.add('hidden');
-        }
+        document.getElementById('pdf-modal').classList.add('hidden'); // Ocultar el modal de PDF
     });
 });
