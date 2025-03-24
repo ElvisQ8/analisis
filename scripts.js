@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
             responsables: ["Rosa Laura", "Milagros Apaza", "Yhonatan Saraya", "Yamila Pari"],
             imagen: "imagenes/proceso13.jpg"
         }
-    ];
+    ]; // **Coma al final del arreglo**
 
     // Mostrar los cards de los procesos
     const procesosContainer = document.getElementById('procesos');
