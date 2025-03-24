@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let currentProceso = null;
 
-  // Renderizar los procesos
+  // Renderizar los procesos en cards
   procesos.forEach((proceso, index) => {
     const card = document.createElement("div");
     card.className = "card";
@@ -181,6 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
     subprocesosContainer.innerHTML = "";
     responsablesContainer.innerHTML = "";
 
+    // Mostrar subprocesos con intervalos
     proceso.subprocesos.forEach((sub, i) => {
       setTimeout(() => {
         const p = document.createElement("p");
@@ -189,15 +190,18 @@ document.addEventListener("DOMContentLoaded", function () {
       }, i * 2000);
     });
 
+    // Mostrar responsables
     proceso.responsables.forEach((res) => {
       const li = document.createElement("li");
       li.textContent = res;
       responsablesContainer.appendChild(li);
     });
 
+    // Mostrar botones
     document.getElementById("proceso-detail").classList.remove("hidden");
   }
 
+  // Mostrar la imagen en el panel lateral
   showImageButton.addEventListener("click", () => {
     if (!currentProceso) return;
     const imagePanel = document.getElementById("image-panel");
@@ -206,6 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
     imagePanel.classList.add("show");
   });
 
+  // Mostrar el PDF en el panel lateral
   showPdfButton.addEventListener("click", () => {
     const pdfPanel = document.getElementById("pdf-panel");
     const modalPdf = document.getElementById("modal-pdf");
@@ -213,10 +218,12 @@ document.addEventListener("DOMContentLoaded", function () {
     pdfPanel.classList.add("show");
   });
 
+  // Cerrar panel lateral de imagen
   document.getElementById("close-image-panel").addEventListener("click", () => {
     document.getElementById("image-panel").classList.remove("show");
   });
 
+  // Cerrar panel lateral de PDF
   document.getElementById("close-pdf-panel").addEventListener("click", () => {
     document.getElementById("pdf-panel").classList.remove("show");
   });
