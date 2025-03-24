@@ -155,16 +155,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ]; // **Coma al final del arreglo**
 
-    // Mostrar los cards de los procesos en un carrusel
-    const procesosContainer = document.getElementById('procesos');
-    procesos.forEach((proceso, index) => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.innerHTML = `<h3>${proceso.nombre}</h3>`;
-        card.addEventListener('click', () => showProcesoDetail(index));
-        procesosContainer.appendChild(card);
-    });
-
     // Mostrar detalles del proceso seleccionado
     function showProcesoDetail(index) {
         const proceso = procesos[index];
