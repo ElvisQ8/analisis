@@ -155,6 +155,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ]; // **Coma al final del arreglo**
 
+    // Mostrar los cards de los procesos en un carrusel
+    const procesosContainer = document.getElementById('procesos');
+    procesos.forEach((proceso, index) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `<h3>${proceso.nombre}</h3>`;
+        card.addEventListener('click', () => showProcesoDetail(index));
+        procesosContainer.appendChild(card);
+    });
+
     // Mostrar detalles del proceso seleccionado
     function showProcesoDetail(index) {
         const proceso = procesos[index];
@@ -189,11 +199,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Mostrar botones
         showImageButton.addEventListener('click', () => {
-            openImageModal(proceso.imagen);
+            openImageModal(proceso.imagen); // Asegúrate de que esta ruta sea correcta
         });
 
         showPdfButton.addEventListener('click', () => {
-            openPdfModal('archivos/seguridad.pdf');
+            openPdfModal('archivos/seguridad.pdf'); // Asegúrate de que esta ruta sea correcta
         });
 
         // Mostrar el detalle del proceso
@@ -204,7 +214,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function openImageModal(imageSrc) {
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
-        modalImage.src = imageSrc;
+        if (modalImage) {
+            modalImage.src = imageSrc;
+        }
         modal.classList.remove('hidden'); // Mostrar el modal de imagen
     }
 
@@ -212,7 +224,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function openPdfModal(pdfSrc) {
         const modal = document.getElementById('pdf-modal');
         const modalPdf = document.getElementById('modal-pdf');
-        modalPdf.src = pdfSrc;
+        if (modalPdf) {
+            modalPdf.src = pdfSrc;
+        }
         modal.classList.remove('hidden'); // Mostrar el modal de PDF
     }
 
