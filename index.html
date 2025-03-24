@@ -22,20 +22,20 @@
       <ul id="responsables"></ul>
       <button id="show-image">Ver Imagen</button>
       <button id="show-pdf">Ver PDF</button>
+
+      <!-- Sección para mostrar la imagen -->
+      <div id="image-container" class="hidden">
+        <h3>Imagen del proceso</h3>
+        <img id="modal-image" class="panel-content" src="" alt="Imagen del proceso" />
+      </div>
+
+      <!-- Sección para mostrar el PDF -->
+      <div id="pdf-container" class="hidden">
+        <h3>PDF del proceso</h3>
+        <iframe id="modal-pdf" class="panel-content" src="" frameborder="0"></iframe>
+      </div>
     </section>
   </main>
-
-  <!-- Panel lateral para imagen -->
-  <div id="image-panel" class="side-panel hidden">
-    <span id="close-image-panel" class="close">&times;</span>
-    <img id="modal-image" class="panel-content" src="" />
-  </div>
-
-  <!-- Panel lateral para PDF -->
-  <div id="pdf-panel" class="side-panel hidden">
-    <span id="close-pdf-panel" class="close">&times;</span>
-    <iframe id="modal-pdf" class="panel-content" src=""></iframe>
-  </div>
 
   <footer>
     <p>&copy; 2025 Proyecto Interactivo</p>
