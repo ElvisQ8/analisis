@@ -62,7 +62,23 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* Estilos para la imagen y el PDF */
+/* Estilos para el contenedor de detalles */
+.process-detail-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Columna izquierda (Subprocesos y Responsables) */
+#left-column {
+  width: 45%;
+}
+
+/* Columna derecha (Imagen) */
+#right-column {
+  width: 45%;
+}
+
+/* Panel de la imagen y PDF */
 #image-container, #pdf-container {
   margin-top: 2rem;
 }
