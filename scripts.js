@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-     const basePath = "/analisis/";
+    const basePath = "/analisis/";
     // Datos de los procesos
     const procesos = [
         {
