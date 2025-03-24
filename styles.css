@@ -1,108 +1,64 @@
-/* Fondo de pantalla */
-.background {
-    background-image: url('background-image.jpg'); /* Cambiar por la ruta de la imagen */
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
-/* Contenedor de Cards (Carrusel) */
-.carousel-container {
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    padding: 2rem;
+}
+
+#procesos {
     display: flex;
-    justify-content: space-between;
-    margin-top: 50px;
-    overflow: hidden;
-    width: 80%;
-    margin: 0 auto;
-    position: relative;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
 .card {
-    background-color: #3498db;
-    padding: 20px;
-    border-radius: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 200px;
     text-align: center;
-    color: white;
     cursor: pointer;
-    width: 150px;
-    height: 150px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-    opacity: 0.6;
-    margin: 0 10px;
+    transition: transform 0.3s ease;
 }
 
 .card:hover {
-    opacity: 1;
+    transform: scale(1.1);
 }
 
-/* Subprocesos */
-.subprocesos-container {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 10px;
-}
-
-.subproceso {
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #3498db;
-    color: white;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+.hidden {
     display: none;
 }
 
-.subproceso-img {
-    width: 100%;
-    height: auto;
-    margin-top: 10px;
-    border-radius: 5px;
-}
-
-/* Flechas de subprocesos */
-.arrow {
-    display: inline-block;
-    margin: 10px;
-    width: 20px;
-    height: 20px;
-    background-color: #3498db;
-    clip-path: polygon(0 0, 100% 50%, 0 100%);
-}
-
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
+#proceso-detail {
+    margin-top: 2rem;
+    padding: 1rem;
     background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsividad */
-@media (max-width: 768px) {
-    .carousel-container {
-        flex-direction: column;
-    }
+button {
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
 
-    .card {
-        width: 200px;
-        margin-bottom: 10px;
-    }
+button:hover {
+    background-color: #0056b3;
 }
