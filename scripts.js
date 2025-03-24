@@ -1,27 +1,31 @@
-// Subprocesos por cada proceso
+// Subprocesos por cada proceso (con imágenes asociadas)
 const procesos = {
     proceso1: {
         nombre: "Recepción de muestras y verificación",
         subprocesos: [
-            "VERIFICACIÓN DE DAÑOS EN LAS CAJAS PORTA CORES",
-            "VERIFICACIÓN DE CÓDIGOS",
-            "REVISIÓN DE TACOS",
-            "EVALUACIÓN VISUAL GEOLOGICA DE LOS CORES"
+            { nombre: "VERIFICACIÓN DE DAÑOS EN LAS CAJAS PORTA CORES", imagen: "imagenes/proceso1.jpg" },
+            { nombre: "VERIFICACIÓN DE CÓDIGOS", imagen: "imagenes/proceso2.jpg" },
+            { nombre: "REVISIÓN DE TACOS", imagen: "imagenes/proceso3.jpg" },
+            { nombre: "EVALUACIÓN VISUAL GEOLOGICA DE LOS CORES", imagen: "imagenes/proceso4.jpg" }
         ]
     },
     proceso2: {
         nombre: "Logueo Geológico",
         subprocesos: [
-            "TRALADOS DE CAJAS CON CORE",
-            "DELIMITACIÓN DE CONTACTOS",
-            "DESCRIPCIÓN GEOLOGICA",
-            "DEFINIR TRAMOS DE MUESTREO E INSERCIÓN DE CONTROLES",
-            "REGISTRO DE INFORMACIÓN EN FUSIÓN",
-            "LECTURAS CON XRF"
+            { nombre: "TRALADOS DE CAJAS CON CORE", imagen: "imagenes/proceso5.jpg" },
+            { nombre: "DELIMITACIÓN DE CONTACTOS", imagen: "imagenes/proceso6.jpg" },
+            { nombre: "DESCRIPCIÓN GEOLOGICA", imagen: "imagenes/proceso7.jpg" },
+            { nombre: "DEFINIR TRAMOS DE MUESTREO E INSERCIÓN DE CONTROLES", imagen: "imagenes/proceso8.jpg" },
+            { nombre: "REGISTRO DE INFORMACIÓN EN FUSIÓN", imagen: "imagenes/proceso9.jpg" },
+            { nombre: "LECTURAS CON XRF", imagen: "imagenes/proceso10.jpg" }
         ]
     },
     // Agregar más procesos según sea necesario
 };
+
+// Variables para el carrusel
+let currentProcessIndex = 0;
+const processIds = Object.keys(procesos);
 
 // Función para mostrar los subprocesos de un proceso
 function showProcess(processId) {
@@ -38,37 +42,53 @@ function showProcess(processId) {
     proceso.subprocesos.forEach((subproceso, index) => {
         const subprocesoDiv = document.createElement('div');
         subprocesoDiv.classList.add('subproceso');
-        subprocesoDiv.textContent = `${index + 1}. ${subproceso}`;
+        subprocesoDiv.textContent = `${index + 1}. ${subproceso.nombre}`;
+        
+        // Agregar la imagen correspondiente a cada subproceso
+        const img = document.createElement('img');
+        img.src = subproceso.imagen;
+        img.alt = subproceso.nombre;
+        img.classList.add('subproceso-img');
+
+        subprocesoDiv.appendChild(img);
         container.appendChild(subprocesoDiv);
+
+        // Agregar flecha entre los subprocesos
+        if (index < proceso.subprocesos.length - 1) {
+            const arrow = document.createElement('div');
+            arrow.classList.add('arrow');
+            subprocesoDiv.appendChild(arrow);
+        }
+
+        // Mostrar subprocesos cada 2 segundos
+        setTimeout(() => {
+            subprocesoDiv.style.display = 'block';
+        }, index * 2000); // 2 segundos por subproceso
     });
 }
 
 // Función para avanzar al siguiente proceso
-function nextProcess(currentProcessId) {
-    const procesosArray = Object.keys(procesos);
-    const currentIndex = procesosArray.indexOf(currentProcessId);
-    if (currentIndex < procesosArray.length - 1) {
-        const nextProcessId = procesosArray[currentIndex + 1];
-        showProcess(nextProcessId);
+function nextProcess() {
+    if (currentProcessIndex < processIds.length - 1) {
+        currentProcessIndex++;
+        showProcess(processIds[currentProcessIndex]);
     }
 }
 
 // Función para retroceder al proceso anterior
-function previousProcess(currentProcessId) {
-    const procesosArray = Object.keys(procesos);
-    const currentIndex = procesosArray.indexOf(currentProcessId);
-    if (currentIndex > 0) {
-        const previousProcessId = procesosArray[currentIndex - 1];
-        showProcess(previousProcessId);
+function previousProcess() {
+    if (currentProcessIndex > 0) {
+        currentProcessIndex--;
+        showProcess(processIds[currentProcessIndex]);
     }
 }
 
-// Función para abrir el modal del PDF
+// Función para abrir el modal
 function openModal() {
     document.getElementById('pdfModal').style.display = 'flex';
 }
 
-// Función para cerrar el modal del PDF
+// Función para cerrar el modal
 function closeModal() {
     document.getElementById('pdfModal').style.display = 'none';
 }
