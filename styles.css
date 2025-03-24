@@ -1,6 +1,6 @@
 /* Fondo de pantalla */
 .background {
-    background-image: url('path/to/background-image.jpg'); /* Cambiar por la ruta de la imagen */
+    background-image: url('background-image.jpg'); /* Cambiar por la ruta de la imagen */
     background-size: cover;
     position: absolute;
     top: 0;
