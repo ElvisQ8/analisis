@@ -1,5 +1,6 @@
-// Datos de los procesos
-const procesos = [
+document.addEventListener("DOMContentLoaded", function () {
+    // Datos de los procesos
+    const procesos = [
     {
         nombre: "Recepción de muestras y verificación",
         subprocesos: [
@@ -154,57 +155,57 @@ const procesos = [
     }
 ];
 
-// Mostrar los cards de los procesos
-const procesosContainer = document.getElementById('procesos');
-procesos.forEach((proceso, index) => {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.innerHTML = `<h3>${proceso.nombre}</h3>`;
-    card.addEventListener('click', () => showProcesoDetail(index));
-    procesosContainer.appendChild(card);
+ const procesosContainer = document.getElementById('procesos');
+    procesos.forEach((proceso, index) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `<h3>${proceso.nombre}</h3>`;
+        card.addEventListener('click', () => showProcesoDetail(index));
+        procesosContainer.appendChild(card);
+    });
+
+    // Mostrar detalles del proceso seleccionado
+    function showProcesoDetail(index) {
+        const proceso = procesos[index];
+        const procesoTitle = document.getElementById('proceso-title');
+        const subprocesosContainer = document.getElementById('subprocesos');
+        const responsablesContainer = document.getElementById('responsables');
+        const showImageButton = document.getElementById('show-image');
+        const showPdfButton = document.getElementById('show-pdf');
+        
+        // Limpiar los elementos de la vista
+        subprocesosContainer.innerHTML = '';
+        responsablesContainer.innerHTML = '';
+
+        // Mostrar título del proceso
+        procesoTitle.textContent = proceso.nombre;
+
+        // Mostrar subprocesos
+        proceso.subprocesos.forEach((subproceso, i) => {
+            setTimeout(() => {
+                const p = document.createElement('p');
+                p.textContent = subproceso;
+                subprocesosContainer.appendChild(p);
+            }, i * 2000); // Aparecer cada 2 segundos
+        });
+
+        // Mostrar responsables
+        proceso.responsables.forEach(responsable => {
+            const li = document.createElement('li');
+            li.textContent = responsable;
+            responsablesContainer.appendChild(li);
+        });
+
+        // Mostrar botones
+        showImageButton.addEventListener('click', () => {
+            window.open(proceso.imagen, '_blank');
+        });
+
+        showPdfButton.addEventListener('click', () => {
+            window.open('archivos/seguridad.pdf', '_blank');
+        });
+
+        // Mostrar el detalle del proceso
+        document.getElementById('proceso-detail').classList.remove('hidden');
+    }
 });
-
-// Mostrar detalles del proceso seleccionado
-function showProcesoDetail(index) {
-    const proceso = procesos[index];
-    const procesoTitle = document.getElementById('proceso-title');
-    const subprocesosContainer = document.getElementById('subprocesos');
-    const responsablesContainer = document.getElementById('responsables');
-    const showImageButton = document.getElementById('show-image');
-    const showPdfButton = document.getElementById('show-pdf');
-    
-    // Limpiar los elementos de la vista
-    subprocesosContainer.innerHTML = '';
-    responsablesContainer.innerHTML = '';
-
-    // Mostrar título del proceso
-    procesoTitle.textContent = proceso.nombre;
-
-    // Mostrar subprocesos
-    proceso.subprocesos.forEach((subproceso, i) => {
-        setTimeout(() => {
-            const p = document.createElement('p');
-            p.textContent = subproceso;
-            subprocesosContainer.appendChild(p);
-        }, i * 2000); // Aparecer cada 2 segundos
-    });
-
-    // Mostrar responsables
-    proceso.responsables.forEach(responsable => {
-        const li = document.createElement('li');
-        li.textContent = responsable;
-        responsablesContainer.appendChild(li);
-    });
-
-    // Mostrar botones
-    showImageButton.addEventListener('click', () => {
-        window.open(proceso.imagen, '_blank');
-    });
-
-    showPdfButton.addEventListener('click', () => {
-        window.open('archivos/seguridad.pdf', '_blank');
-    });
-
-    // Mostrar el detalle del proceso
-    document.getElementById('proceso-detail').classList.remove('hidden');
-}
