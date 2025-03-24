@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+#procesos {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.process-card {
+    background-color: #f0a500;
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    width: 200px;
+    transition: background-color 0.3s;
+}
+
+.process-card:hover {
+    background-color: #ff7f00;
+}
+
+#subprocesos {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#imagen {
+    text-align: center;
+    margin-top: 30px;
+    display: none;
+}
+
+.flecha {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+}
