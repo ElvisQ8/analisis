@@ -198,6 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
       responsablesContainer.appendChild(li);
     });
 
+    // Mostrar botones
     document.getElementById("proceso-detail").classList.remove("hidden");
   }
 
@@ -228,3 +229,4 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("pdf-panel").classList.remove("show");
   });
 });
+
