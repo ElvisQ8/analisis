@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const panel = document.getElementById('image-panel');
         const panelImage = document.getElementById('modal-image');
         panelImage.src = imageSrc; // Establecer la imagen en el panel lateral
-        panel.classList.add('show'); // Mostrar el panel lateral
+        panel.classList.remove('hidden'); // Mostrar el panel lateral
     }
 
     // Función para abrir el panel lateral de PDF
@@ -223,14 +223,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const panel = document.getElementById('pdf-panel');
         const panelPdf = document.getElementById('modal-pdf');
         panelPdf.src = pdfSrc; // Establecer el archivo PDF en el panel lateral
-        panel.classList.add('show'); // Mostrar el panel lateral
+        panel.classList.remove('hidden'); // Mostrar el panel lateral
     }
 
     // Cerrar el panel lateral de imagen y PDF
     document.getElementById('close-panel').addEventListener('click', () => {
         const panels = document.querySelectorAll('#image-panel, #pdf-panel');
         panels.forEach(panel => {
-            panel.classList.remove('show'); // Ocultar los paneles laterales
+            panel.classList.add('hidden'); // Ocultar los paneles laterales
         });
     });
 });
