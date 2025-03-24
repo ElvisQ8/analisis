@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flujo de Procesos de Logueo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="procesos">
+        <!-- Cards de procesos -->
+        <div class="process-card" id="proceso1" onclick="mostrarSubprocesos('proceso1')">
+            <h3>Proceso 1: Recepción de muestras</h3>
+        </div>
+        <div class="process-card" id="proceso2" onclick="mostrarSubprocesos('proceso2')">
+            <h3>Proceso 2: Logueo Geológico</h3>
+        </div>
+        <div class="process-card" id="proceso3" onclick="mostrarSubprocesos('proceso3')">
+            <h3>Proceso 3: Registro de RQD</h3>
+        </div>
+        <!-- Puedes agregar más procesos según sea necesario -->
+    </div>
+
+    <div id="subprocesos">
+        <!-- Aquí se mostrarán los subprocesos -->
+    </div>
+
+    <div id="imagen">
+        <!-- Aquí se mostrará la imagen referencial al final -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
