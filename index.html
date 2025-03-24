@@ -11,9 +11,16 @@
         <h1>Procesos del Trabajo</h1>
     </header>
     <main>
-        <section id="procesos">
-            <!-- Cards de procesos se cargarán aquí -->
+        <!-- Carrusel de procesos -->
+        <section id="carousel" class="carousel-container">
+            <div id="procesos" class="carousel-items">
+                <!-- Cards de procesos se cargarán aquí -->
+            </div>
+            <button class="carousel-control left" id="prev">←</button>
+            <button class="carousel-control right" id="next">→</button>
         </section>
+
+        <!-- Detalle de proceso -->
         <section id="proceso-detail" class="hidden">
             <h2 id="proceso-title"></h2>
             <div id="subprocesos"></div>
@@ -23,6 +30,19 @@
             <button id="show-pdf">Ver PDF</button>
         </section>
     </main>
+
+    <!-- Modal de imagen -->
+    <div id="imageModal" class="modal hidden">
+        <span class="close" id="closeImage">&times;</span>
+        <img id="modalImage" src="" alt="Imagen del proceso" />
+    </div>
+
+    <!-- Modal de PDF -->
+    <div id="pdfModal" class="modal hidden">
+        <span class="close" id="closePdf">&times;</span>
+        <iframe id="pdfViewer" src="" width="100%" height="500px"></iframe>
+    </div>
+
     <footer>
         <p>&copy; 2025 Proyecto Interactivo</p>
     </footer>
