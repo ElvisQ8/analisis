@@ -42,6 +42,11 @@ main {
     display: none;
 }
 
+/* Asegúrate de que los modales estén ocultos por defecto */
+#image-modal, #pdf-modal {
+    display: none; /* Asegúrate de que estén ocultos inicialmente */
+}
+
 #proceso-detail {
     margin-top: 2rem;
     padding: 1rem;
