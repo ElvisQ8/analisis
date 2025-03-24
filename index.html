@@ -19,23 +19,25 @@
             <div id="subprocesos"></div>
             <h3>Responsables:</h3>
             <ul id="responsables"></ul>
+
+            <!-- Botones para mostrar la imagen y el PDF -->
             <button id="show-image">Ver Imagen</button>
             <button id="show-pdf">Ver PDF</button>
         </section>
     </main>
-    
-    <!-- Modal para la imagen -->
-    <div id="image-modal" class="modal hidden">
-        <span id="close-image" class="close">&times;</span>
+
+    <!-- Panel lateral para la imagen -->
+    <div id="image-panel" class="hidden">
+        <span id="close-panel" class="close">&times;</span>
         <img id="modal-image" class="modal-content">
     </div>
-    
-    <!-- Modal para el PDF -->
-    <div id="pdf-modal" class="modal hidden">
-        <span id="close-pdf" class="close">&times;</span>
+
+    <!-- Panel lateral para el PDF -->
+    <div id="pdf-panel" class="hidden">
+        <span id="close-panel" class="close">&times;</span>
         <iframe id="modal-pdf" class="modal-content"></iframe>
     </div>
-    
+
     <footer>
         <p>&copy; 2025 Proyecto Interactivo</p>
     </footer>
