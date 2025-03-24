@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ]; // **Coma al final del arreglo**
 
-     // Mostrar los cards de los procesos en un carrusel
+    // Mostrar los cards de los procesos en un carrusel
     const procesosContainer = document.getElementById('procesos');
     procesos.forEach((proceso, index) => {
         const card = document.createElement('div');
@@ -234,5 +234,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // Cerrar el modal de PDF
     document.getElementById('close-pdf').addEventListener('click', () => {
         document.getElementById('pdf-modal').classList.add('hidden'); // Ocultar el modal de PDF
+    });
+
+    // Cerrar el modal si se hace clic fuera del modal
+    window.addEventListener('click', function(event) {
+        const imageModal = document.getElementById('image-modal');
+        const pdfModal = document.getElementById('pdf-modal');
+        
+        // Cerrar modales si se hace clic fuera de los modales
+        if (event.target === imageModal) {
+            imageModal.classList.add('hidden');
+        }
+        if (event.target === pdfModal) {
+            pdfModal.classList.add('hidden');
+        }
     });
 });
