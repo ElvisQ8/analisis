@@ -174,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
     procesosContainer.appendChild(card);
   });
 
+  // Mostrar los detalles del proceso al hacer clic
   function mostrarDetalle(index) {
     const proceso = procesos[index];
     currentProceso = proceso;
@@ -182,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
     subprocesosContainer.innerHTML = "";
     responsablesContainer.innerHTML = "";
 
-    // Mostrar subprocesos con intervalos
+    // Mostrar subprocesos con intervalos de 2 segundos
     proceso.subprocesos.forEach((sub, i) => {
       setTimeout(() => {
         const p = document.createElement("p");
@@ -198,35 +199,34 @@ document.addEventListener("DOMContentLoaded", function () {
       responsablesContainer.appendChild(li);
     });
 
-    // Mostrar botones
     document.getElementById("proceso-detail").classList.remove("hidden");
   }
 
-  // Mostrar la imagen en el panel lateral
+  // Función para abrir la imagen en el panel lateral
   showImageButton.addEventListener("click", () => {
-    if (!currentProceso) return;
+    if (!currentProceso) return; // Verificar que haya un proceso seleccionado
     const imagePanel = document.getElementById("image-panel");
     const modalImage = document.getElementById("modal-image");
-    modalImage.src = basePath + currentProceso.imagen;
-    imagePanel.classList.add("show");
+    modalImage.src = basePath + currentProceso.imagen; // Usar la ruta base para imágenes
+    imagePanel.classList.add("show"); // Mostrar el panel lateral de la imagen
   });
 
-  // Mostrar el PDF en el panel lateral
+  // Función para abrir el PDF en el panel lateral
   showPdfButton.addEventListener("click", () => {
+    if (!currentProceso) return; // Verificar que haya un proceso seleccionado
     const pdfPanel = document.getElementById("pdf-panel");
     const modalPdf = document.getElementById("modal-pdf");
-    modalPdf.src = basePath + "archivos/seguridad.pdf";
-    pdfPanel.classList.add("show");
+    modalPdf.src = basePath + "archivos/seguridad.pdf"; // Usar la ruta base para el PDF
+    pdfPanel.classList.add("show"); // Mostrar el panel lateral del PDF
   });
 
-  // Cerrar panel lateral de imagen
+  // Cerrar el panel lateral de imagen
   document.getElementById("close-image-panel").addEventListener("click", () => {
-    document.getElementById("image-panel").classList.remove("show");
+    document.getElementById("image-panel").classList.remove("show"); // Ocultar el panel de la imagen
   });
 
-  // Cerrar panel lateral de PDF
+  // Cerrar el panel lateral de PDF
   document.getElementById("close-pdf-panel").addEventListener("click", () => {
-    document.getElementById("pdf-panel").classList.remove("show");
+    document.getElementById("pdf-panel").classList.remove("show"); // Ocultar el panel del PDF
   });
 });
-
