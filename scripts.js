@@ -51,7 +51,6 @@ function showProcess(processId) {
         img.classList.add('subproceso-img');
 
         subprocesoDiv.appendChild(img);
-        container.appendChild(subprocesoDiv);
 
         // Agregar flecha entre los subprocesos
         if (index < proceso.subprocesos.length - 1) {
@@ -59,6 +58,8 @@ function showProcess(processId) {
             arrow.classList.add('arrow');
             subprocesoDiv.appendChild(arrow);
         }
+
+        container.appendChild(subprocesoDiv);
 
         // Mostrar subprocesos cada 2 segundos
         setTimeout(() => {
