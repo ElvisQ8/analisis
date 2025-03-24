@@ -155,85 +155,69 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ]; // **Coma al final del arreglo**
 
-    // Mostrar los cards de los procesos en un carrusel
-    const procesosContainer = document.getElementById('procesos');
-    procesos.forEach((proceso, index) => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.innerHTML = `<h3>${proceso.nombre}</h3>`;
-        card.addEventListener('click', () => showProcesoDetail(index));
-        procesosContainer.appendChild(card);
+    const procesosContainer = document.getElementById("procesos");
+  const procesoTitle = document.getElementById("proceso-title");
+  const subprocesosContainer = document.getElementById("subprocesos");
+  const responsablesContainer = document.getElementById("responsables");
+  const showImageButton = document.getElementById("show-image");
+  const showPdfButton = document.getElementById("show-pdf");
+
+  let currentProceso = null;
+
+  // Crear las cards
+  procesos.forEach((proceso, index) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `<h3>${proceso.nombre}</h3>`;
+    card.addEventListener("click", () => mostrarDetalle(index));
+    procesosContainer.appendChild(card);
+  });
+
+  function mostrarDetalle(index) {
+    const proceso = procesos[index];
+    currentProceso = proceso;
+    procesoTitle.textContent = proceso.nombre;
+
+    subprocesosContainer.innerHTML = "";
+    responsablesContainer.innerHTML = "";
+
+    proceso.subprocesos.forEach((sub, i) => {
+      setTimeout(() => {
+        const p = document.createElement("p");
+        p.textContent = sub;
+        subprocesosContainer.appendChild(p);
+      }, i * 2000);
     });
 
-    // Mostrar detalles del proceso seleccionado
-    function showProcesoDetail(index) {
-        const proceso = procesos[index];
-        const procesoTitle = document.getElementById('proceso-title');
-        const subprocesosContainer = document.getElementById('subprocesos');
-        const responsablesContainer = document.getElementById('responsables');
-        const showImageButton = document.getElementById('show-image');
-        const showPdfButton = document.getElementById('show-pdf');
-        
-        // Limpiar los elementos de la vista
-        subprocesosContainer.innerHTML = '';
-        responsablesContainer.innerHTML = '';
-
-        // Mostrar título del proceso
-        procesoTitle.textContent = proceso.nombre;
-
-        // Mostrar subprocesos
-        proceso.subprocesos.forEach((subproceso, i) => {
-            setTimeout(() => {
-                const p = document.createElement('p');
-                p.textContent = subproceso;
-                subprocesosContainer.appendChild(p);
-            }, i * 2000); // Aparecer cada 2 segundos
-        });
-
-        // Mostrar responsables
-        proceso.responsables.forEach(responsable => {
-            const li = document.createElement('li');
-            li.textContent = responsable;
-            responsablesContainer.appendChild(li);
-        });
-
-        // Mostrar botones
-        showImageButton.addEventListener('click', () => {
-            openImagePanel(proceso.imagen); // Abrir imagen en la ventana lateral
-        });
-
-        showPdfButton.addEventListener('click', () => {
-            openPdfPanel('archivos/seguridad.pdf'); // Abrir PDF en la ventana lateral
-        });
-
-        // Mostrar el detalle del proceso
-        document.getElementById('proceso-detail').classList.remove('hidden');
-    }
-
-    // Función para abrir el panel lateral de imagen
-    function openImagePanel(imageSrc) {
-        const panel = document.getElementById('image-panel');
-        const panelImage = document.getElementById('modal-image');
-        panelImage.src = imageSrc; // Establecer la imagen en el panel lateral
-        panel.classList.remove('hidden'); // Mostrar el panel lateral
-    }
-
-    // Función para abrir el panel lateral de PDF
-    function openPdfPanel(pdfSrc) {
-        const panel = document.getElementById('pdf-panel');
-        const panelPdf = document.getElementById('modal-pdf');
-        panelPdf.src = pdfSrc; // Establecer el archivo PDF en el panel lateral
-        panel.classList.remove('hidden'); // Mostrar el panel lateral
-    }
-
-    // Cerrar el panel lateral de imagen y PDF
-    document.getElementById('close-image-panel').addEventListener('click', () => {
-        const panel = document.getElementById('image-panel');
-        panel.classList.add('hidden'); // Ocultar el panel lateral de imagen
+    proceso.responsables.forEach((res) => {
+      const li = document.createElement("li");
+      li.textContent = res;
+      responsablesContainer.appendChild(li);
     });
 
-    document.getElementById('close-pdf-panel').addEventListener('click', () => {
-        const panel = document.getElementById('pdf-panel');
-        panel.classList.add('hidden'); // Ocultar el panel lateral de PDF
-    });
+    document.getElementById("proceso-detail").classList.remove("hidden");
+  }
+
+  showImageButton.addEventListener("click", () => {
+    if (!currentProceso) return;
+    const imagePanel = document.getElementById("image-panel");
+    const modalImage = document.getElementById("modal-image");
+    modalImage.src = currentProceso.imagen;
+    imagePanel.classList.add("show");
+  });
+
+  showPdfButton.addEventListener("click", () => {
+    const pdfPanel = document.getElementById("pdf-panel");
+    const modalPdf = document.getElementById("modal-pdf");
+    modalPdf.src = "archivos/seguridad.pdf";
+    pdfPanel.classList.add("show");
+  });
+
+  document.getElementById("close-image-panel").addEventListener("click", () => {
+    document.getElementById("image-panel").classList.remove("show");
+  });
+
+  document.getElementById("close-pdf-panel").addEventListener("click", () => {
+    document.getElementById("pdf-panel").classList.remove("show");
+  });
 });
