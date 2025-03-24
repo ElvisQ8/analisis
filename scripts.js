@@ -230,3 +230,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("pdf-panel").classList.remove("show"); // Ocultar el panel del PDF
   });
 });
+
+
+  // Cerrar el panel lateral de PDF
+  document.getElementById("close-pdf-panel").addEventListener("click", () => {
+    document.getElementById("pdf-panel").classList.remove("show"); // Ocultar el panel del PDF
+  });
+});
