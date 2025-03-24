@@ -1,43 +1,67 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
+/* Fondo de pantalla */
+.background {
+    background-image: url('path/to/background-image.jpg'); /* Cambiar por la ruta de la imagen */
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
-#procesos {
+/* Contenedor de Cards */
+.cards-container {
     display: flex;
     justify-content: space-around;
     margin-top: 50px;
 }
 
-.process-card {
-    background-color: #f0a500;
+.card {
+    background-color: #3498db;
     padding: 20px;
     border-radius: 10px;
+    text-align: center;
+    color: white;
     cursor: pointer;
-    text-align: center;
-    width: 200px;
-    transition: background-color 0.3s;
+    width: 150px;
+    height: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
 }
 
-.process-card:hover {
-    background-color: #ff7f00;
+.card:hover {
+    transform: scale(1.05);
 }
 
-#subprocesos {
-    text-align: center;
-    margin-top: 50px;
-}
-
-#imagen {
-    text-align: center;
-    margin-top: 30px;
+/* Modal */
+.modal {
     display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
 }
 
-.flecha {
-    font-size: 24px;
-    text-align: center;
-    margin-top: 20px;
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .cards-container {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 200px;
+        margin-bottom: 10px;
+    }
 }
