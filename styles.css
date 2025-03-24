@@ -1,6 +1,6 @@
 /* Fondo de pantalla */
 .background {
-    background-image: url('background-image.jpg'); /* Cambiar por la ruta de la imagen */
+    background-image: url('imagenes/background-image.jpg'); /* Cambiar por la ruta de la imagen */
     background-size: cover;
     position: absolute;
     top: 0;
@@ -10,11 +10,14 @@
     z-index: -1;
 }
 
-/* Contenedor de Cards */
-.cards-container {
+/* Contenedor de Cards (Carrusel) */
+.carousel-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 50px;
+    overflow: hidden;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .card {
@@ -34,7 +37,7 @@
     transform: scale(1.05);
 }
 
-/* Estilo para los Subprocesos */
+/* Subprocesos */
 .subprocesos-container {
     margin-top: 20px;
     padding: 20px;
@@ -51,7 +54,17 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Estilo para los Botones de Navegación */
+/* Flechas de subprocesos */
+.arrow {
+    display: inline-block;
+    margin: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: #3498db;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+/* Botones de navegación */
 .navigation-buttons {
     display: flex;
     justify-content: space-between;
@@ -94,7 +107,7 @@
 
 /* Responsividad */
 @media (max-width: 768px) {
-    .cards-container {
+    .carousel-container {
         flex-direction: column;
     }
 
