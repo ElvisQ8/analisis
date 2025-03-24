@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const p = document.createElement("p");
         p.textContent = sub;
         subprocesosContainer.appendChild(p);
-      }, i * 2000);
+      }, i * 1000);
     });
 
     // Mostrar responsables
