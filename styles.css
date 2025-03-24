@@ -66,16 +66,17 @@ button:hover {
 .process-detail-container {
   display: flex;
   justify-content: space-between;
+  gap: 2rem; /* Asegura que haya un espacio entre las columnas */
 }
 
 /* Columna izquierda (Subprocesos y Responsables) */
 #left-column {
-  width: 45%;
+  width: 50%; /* Ajustado para ocupar el 50% del ancho */
 }
 
 /* Columna derecha (Imagen) */
 #right-column {
-  width: 45%;
+  width: 50%; /* Ajustado para ocupar el 50% del ancho */
 }
 
 /* Panel de la imagen y PDF */
@@ -90,4 +91,17 @@ button:hover {
   border: none;
   border-radius: 8px;
   background: white;
+}
+
+/* Agregar un poco de margen para el contenedor de la imagen */
+#image-container {
+  display: flex;
+  justify-content: center; /* Centra la imagen horizontalmente */
+  align-items: center; /* Centra la imagen verticalmente */
+  height: 100%; /* Asegura que ocupe toda la columna */
+}
+
+#modal-image {
+  max-width: 100%;
+  max-height: 100%;
 }
