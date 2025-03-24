@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ]; // **Coma al final del arreglo**
 
-// Mostrar los cards de los procesos en un carrusel
+    // Mostrar los cards de los procesos en un carrusel
     const procesosContainer = document.getElementById('procesos');
     procesos.forEach((proceso, index) => {
         const card = document.createElement('div');
@@ -227,10 +227,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Cerrar el panel lateral de imagen y PDF
-    document.getElementById('close-panel').addEventListener('click', () => {
-        const panels = document.querySelectorAll('#image-panel, #pdf-panel');
-        panels.forEach(panel => {
-            panel.classList.add('hidden'); // Ocultar los paneles laterales
-        });
+    document.getElementById('close-image-panel').addEventListener('click', () => {
+        const panel = document.getElementById('image-panel');
+        panel.classList.add('hidden'); // Ocultar el panel lateral de imagen
+    });
+
+    document.getElementById('close-pdf-panel').addEventListener('click', () => {
+        const panel = document.getElementById('pdf-panel');
+        panel.classList.add('hidden'); // Ocultar el panel lateral de PDF
     });
 });
