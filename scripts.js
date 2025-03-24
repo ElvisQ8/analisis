@@ -235,4 +235,18 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('close-pdf').addEventListener('click', () => {
         document.getElementById('pdf-modal').classList.add('hidden');
     });
+
+    // Cerrar el modal cuando se haga clic fuera del contenido del modal
+    window.addEventListener('click', function(event) {
+        const imageModal = document.getElementById('image-modal');
+        const pdfModal = document.getElementById('pdf-modal');
+        
+        // Cerrar modales si se hace clic fuera del modal
+        if (event.target === imageModal) {
+            imageModal.classList.add('hidden');
+        }
+        if (event.target === pdfModal) {
+            pdfModal.classList.add('hidden');
+        }
+    });
 });
