@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ]; // **Coma al final del arreglo**
 
-    // Mostrar los cards de los procesos en un carrusel
+// Mostrar los cards de los procesos en un carrusel
     const procesosContainer = document.getElementById('procesos');
     procesos.forEach((proceso, index) => {
         const card = document.createElement('div');
@@ -199,58 +199,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Mostrar botones
         showImageButton.addEventListener('click', () => {
-            openImageModal(proceso.imagen); // Asegúrate de que esta ruta sea correcta
+            openImagePanel(proceso.imagen); // Abrir imagen en la ventana lateral
         });
 
         showPdfButton.addEventListener('click', () => {
-            openPdfModal('archivos/seguridad.pdf'); // Asegúrate de que esta ruta sea correcta
+            openPdfPanel('archivos/seguridad.pdf'); // Abrir PDF en la ventana lateral
         });
 
         // Mostrar el detalle del proceso
         document.getElementById('proceso-detail').classList.remove('hidden');
     }
 
-    // Función para abrir el modal de imagen
-    function openImageModal(imageSrc) {
-        const modal = document.getElementById('image-modal');
-        const modalImage = document.getElementById('modal-image');
-        if (modalImage) {
-            modalImage.src = imageSrc;
-        }
-        modal.classList.remove('hidden'); // Mostrar el modal de imagen
+    // Función para abrir el panel lateral de imagen
+    function openImagePanel(imageSrc) {
+        const panel = document.getElementById('image-panel');
+        const panelImage = document.getElementById('modal-image');
+        panelImage.src = imageSrc; // Establecer la imagen en el panel lateral
+        panel.classList.add('show'); // Mostrar el panel lateral
     }
 
-    // Función para abrir el modal de PDF
-    function openPdfModal(pdfSrc) {
-        const modal = document.getElementById('pdf-modal');
-        const modalPdf = document.getElementById('modal-pdf');
-        if (modalPdf) {
-            modalPdf.src = pdfSrc;
-        }
-        modal.classList.remove('hidden'); // Mostrar el modal de PDF
+    // Función para abrir el panel lateral de PDF
+    function openPdfPanel(pdfSrc) {
+        const panel = document.getElementById('pdf-panel');
+        const panelPdf = document.getElementById('modal-pdf');
+        panelPdf.src = pdfSrc; // Establecer el archivo PDF en el panel lateral
+        panel.classList.add('show'); // Mostrar el panel lateral
     }
 
-    // Cerrar el modal de imagen
-    document.getElementById('close-image').addEventListener('click', () => {
-        document.getElementById('image-modal').classList.add('hidden'); // Ocultar el modal de imagen
-    });
-
-    // Cerrar el modal de PDF
-    document.getElementById('close-pdf').addEventListener('click', () => {
-        document.getElementById('pdf-modal').classList.add('hidden'); // Ocultar el modal de PDF
-    });
-
-    // Cerrar el modal si se hace clic fuera del modal
-    window.addEventListener('click', function(event) {
-        const imageModal = document.getElementById('image-modal');
-        const pdfModal = document.getElementById('pdf-modal');
-        
-        // Cerrar modales si se hace clic fuera de los modales
-        if (event.target === imageModal) {
-            imageModal.classList.add('hidden');
-        }
-        if (event.target === pdfModal) {
-            pdfModal.classList.add('hidden');
-        }
+    // Cerrar el panel lateral de imagen y PDF
+    document.getElementById('close-panel').addEventListener('click', () => {
+        const panels = document.querySelectorAll('#image-panel, #pdf-panel');
+        panels.forEach(panel => {
+            panel.classList.remove('show'); // Ocultar los paneles laterales
+        });
     });
 });
