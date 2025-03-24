@@ -1,49 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Procesos del Trabajo</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Procesos del Trabajo</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header>
-        <h1>Procesos del Trabajo</h1>
-    </header>
+  <header>
+    <h1>Procesos del Trabajo</h1>
+  </header>
 
-    <main>
-        <section id="procesos" class="carousel">
-            <!-- Cards de procesos se cargarán aquí -->
-        </section>
+  <main>
+    <section id="procesos" class="carousel">
+      <!-- Se insertan dinámicamente -->
+    </section>
 
-        <section id="proceso-detail" class="hidden">
-            <h2 id="proceso-title"></h2>
-            <div id="subprocesos"></div>
-            <h3>Responsables:</h3>
-            <ul id="responsables"></ul>
+    <section id="proceso-detail" class="hidden">
+      <h2 id="proceso-title"></h2>
+      <div id="subprocesos"></div>
+      <h3>Responsables:</h3>
+      <ul id="responsables"></ul>
+      <button id="show-image">Ver Imagen</button>
+      <button id="show-pdf">Ver PDF</button>
+    </section>
+  </main>
 
-            <!-- Botones -->
-            <button id="show-image">Ver Imagen</button>
-            <button id="show-pdf">Ver PDF</button>
-        </section>
-    </main>
+  <!-- Panel lateral de imagen -->
+  <div id="image-panel" class="side-panel hidden">
+    <span id="close-image-panel" class="close">&times;</span>
+    <img id="modal-image" class="panel-content" src="" />
+  </div>
 
-    <!-- Panel lateral para imagen -->
-    <div id="image-panel" class="side-panel hidden">
-        <span id="close-image-panel" class="close">&times;</span>
-        <img id="modal-image" class="panel-content" src="" alt="Imagen del proceso">
-    </div>
+  <!-- Panel lateral de PDF -->
+  <div id="pdf-panel" class="side-panel hidden">
+    <span id="close-pdf-panel" class="close">&times;</span>
+    <iframe id="modal-pdf" class="panel-content" src=""></iframe>
+  </div>
 
-    <!-- Panel lateral para PDF -->
-    <div id="pdf-panel" class="side-panel hidden">
-        <span id="close-pdf-panel" class="close">&times;</span>
-        <iframe id="modal-pdf" class="panel-content" src=""></iframe>
-    </div>
+  <footer>
+    <p>&copy; 2025 Proyecto Interactivo</p>
+  </footer>
 
-    <footer>
-        <p>&copy; 2025 Proyecto Interactivo</p>
-    </footer>
-
-    <script src="scripts.js"></script>
+  <script src="scripts.js"></script>
 </body>
 </html>
