@@ -34,7 +34,7 @@ main {
 
 .card:hover {
   transform: scale(1.05);
-  background-color: #FFB74D; /* Naranja suave */
+  background-color: #FF5733; /* Naranja suave */
 }
 
 #proceso-detail {
