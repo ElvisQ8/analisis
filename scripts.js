@@ -191,6 +191,9 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => {
         const p = document.createElement("p");
         p.textContent = sub;
+        p.style.backgroundColor = '#E3F2FD'; // Azul claro para cada subproceso
+        p.style.padding = '0.5rem';
+        p.style.borderRadius = '5px';
         subprocesosContainer.appendChild(p);
       }, i * 1000);
     });
