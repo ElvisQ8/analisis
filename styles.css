@@ -29,11 +29,12 @@ main {
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: transform 0.3s, background-color 0.3s;
 }
 
 .card:hover {
   transform: scale(1.05);
+  background-color: #FFB74D; /* Naranja suave */
 }
 
 #proceso-detail {
@@ -110,7 +111,13 @@ button:hover {
   cursor: pointer;
   text-decoration: none;
 }
-
+#subprocesos p {
+  background-color: #E3F2FD; /* Azul claro */
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
 #google-drive-btn:hover {
   background-color: darkorange;
 }
